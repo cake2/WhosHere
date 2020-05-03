@@ -116,7 +116,19 @@ $FirstSeen=htmlspecialchars($FirstSeen);
 $LastSeen=htmlspecialchars($LastSeen);
 
 ?>
-<TR><FORM METHOD="POST" ACTION="<?php echo $_SERVER['PHP_SELF']; ?>"><INPUT TYPE="hidden" NAME="asset" VALUE="<?php echo $MAC; ?>"><TD><INPUT TYPE="TEXT" NAME="Nickname" VALUE="<?php echo $Nickname; ?>"></TD><TD ALIGN="CENTER"><?php if($SSIDs >= 1){?><A HREF="assetinfo.php?MAC=<?php echo $MAC; ?>" TARGET="_BLANK"><?php echo $TimesSeen; ?></a><?php } else { echo $TimesSeen; }?></TD><TD><?php echo $FirstSeen; ?></TD><TD><?php echo $LastSeen; ?></TD><TD ALIGN="CENTER"><?php echo $SignalStrength; ?></TD><TD ALIGN="CENTER"><INPUT TYPE="CHECKBOX" NAME="Notify" <?php if($Notify == 1){echo "checked";}else{echo "unchecked";}?>></TD><TD><INPUT TYPE="TEXT" NAME="DBTreshold" VALUE="<?php echo $DBTreshold; ?>" SIZE="3"></TD><TD ALIGN="CENTER"><INPUT TYPE="SUBMIT" VALUE="Save"></TD></FORM></TR>
+<TR><FORM METHOD="POST" ACTION="<?php echo $_SERVER['PHP_SELF']; ?>"><INPUT TYPE="hidden" NAME="asset" VALUE="<?php echo $MAC; ?>"><TD><INPUT TYPE="TEXT" NAME="Nickname" VALUE="<?php echo $Nickname; ?>"></TD>
+
+<TD ALIGN="CENTER"><?php 
+    echo $SignalStrength; 
+  if ($SignalStrength > -81 && $SignalStrength < -66) {
+    echo "<div style='background-color:red;color:white;font-weight:bold;'>NEAR</div>";
+} elseif ($SignalStrength > -65) {
+    echo "<div style='background-color:black;color:red;font-weight:bold;'>RED HOT</div>";
+} else {
+    echo "<div style='background-color:grey;color:white;font-weight:bold;'>FAR</div>";
+} ?></TD>
+
+<TD ALIGN="CENTER"><INPUT TYPE="CHECKBOX" NAME="Notify" <?php if($Notify == 1){echo "checked";}else{echo "unchecked";}?>></TD><TD><INPUT TYPE="TEXT" NAME="DBTreshold" VALUE="<?php echo $DBTreshold; ?>" SIZE="3"></TD><TD ALIGN="CENTER"><INPUT TYPE="SUBMIT" VALUE="Save"></TD></FORM></TR>
 
 <?php
     }
