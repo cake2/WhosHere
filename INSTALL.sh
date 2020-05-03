@@ -24,7 +24,7 @@ echo "Installing Required Packages.. You Will Have to Create a Database Password
 
 sleep 2;
 
-sudo apt-get install apache2 php mysql-client mysql-server php-mysqlnd python-mysqldb tshark mysql-server python3-pymysql -y;
+sudo apt-get install apache2 php mariadb-server mariadb-client php7.3-mysqlnd python-mysqldb tshark python-pymysql -y;
 
 
 
@@ -94,11 +94,11 @@ sed -i -e 's/PASSWORD_GOES_HERE/'$MySQLPassword'/g' dbconfig.php;
 
 echo "This script uses IFTTT.com (If Then Then That) Incoming Webhooks for Slack/SMS/etc Notifications/Automation";
 
-echo "What is your IFTTT.com Webhook URL? (Should look like https://maker.ifttt.com/trigger/WhosHere/with/key/IFTTT_WEBHOOK_GOES_HERE)"
+echo "What is your IFTTT.com Webhook KEY? (Should look like https://maker.ifttt.com/trigger/WhosHere/with/key/IFTTT_WEBHOOK_KEY_GOES_HERE)"
 
 read webhook
 
-sed -i -e "s~IFTTT_WEBHOOK_GOES_HERE~$webhook~g" CheckAlerts.php;
+sed -i -e "s~IFTTT_WEBHOOK_KEY_GOES_HERE~$webhook~g" CheckAlerts.php;
 
 ## SETS UP APACHE AND COPIES PHP WEB FILES
 
