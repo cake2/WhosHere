@@ -36,8 +36,9 @@ for line in iter(proc.stdout.readline, ""):
     values = line.split("\t")
 
     MAC=values[0]
+    DBx2remove=values[1]
+    DB=DBx2remove[4:]
     AP=values[2]
-    DB=values[1]
 
     print values
 
