@@ -36,6 +36,8 @@ for line in iter(proc.stdout.readline, ""):
     values = line.split("\t")
 
     MAC=values[0]
+# Getting multiple readings from 'tshark -i mon0 -T fields -e wlan.sa -e radiotap.dbm_antsignal -c 5'
+# Added DBx2remove[4:] removes first 4 spaces
     DBx2remove=values[1]
     DB=DBx2remove[4:]
     AP=values[2]
